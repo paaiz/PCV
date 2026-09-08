@@ -15,12 +15,21 @@ kontras_rendah_resize = cv2.resize(KONTRAS_RENDAH, (600, 400))
 foto_gelap_resize = cv2.resize(FOTO_GELAP, (600, 800))
 
 loaded_images = {
-    "foto_gelap": foto_gelap_resize,
+    # "foto_gelap": foto_gelap_resize,
     "foto_terang": FOTO_TERANG,
-    "kontras_rendah": kontras_rendah_resize
+    # "kontras_rendah": kontras_rendah_resize
 }
 
 def showImageProperties():
+    [h,w,c] = FOTO_TERANG.shape
+
+    # Image filter (channel itu dari 0,1,2) untuk BGR
+    for i in range(h):
+        for j in range(w):
+                       #x,y,c
+            FOTO_TERANG[i,j,1] = 0
+            FOTO_TERANG[i,j,2] = 0
+
     for name, image in loaded_images.items():
 
         cv2.imshow(name, image)
@@ -30,5 +39,5 @@ def showImageProperties():
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    
+
 showImageProperties()
