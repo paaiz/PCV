@@ -40,4 +40,17 @@ def showImageProperties():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-showImageProperties()
+# showImageProperties()
+
+
+def liveCamFeed():
+    capture = cv2.VideoCapture(0)
+
+    while True:
+        bool, frame = capture.read()
+
+        cv2.imshow("Live Cam Feed", frame)
+
+        if cv2.waitKey(1) == ord('q'):
+            break
+liveCamFeed()
