@@ -49,8 +49,15 @@ def liveCamFeed():
     while True:
         bool, frame = capture.read()
 
+        # filter disini
+        frame[:,:, 2] = 0
+        frame[:,:, 0] = 0
+
         cv2.imshow("Live Cam Feed", frame)
 
         if cv2.waitKey(1) == ord('q'):
             break
+
+    capture.release()
+    cv2.destroyAllWindows()
 liveCamFeed()
